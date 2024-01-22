@@ -1,21 +1,12 @@
 package me.dungngminh.seenowcarouselplayground
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.constraintlayout.helper.widget.Carousel
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.transition.Transition
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
 import me.dungngminh.seenowcarouselplayground.databinding.FragmentHomeBinding
-import me.dungngminh.seenowcarouselplayground.databinding.LayoutTopTenBinding
 
 class HomeFragment : Fragment() {
 
@@ -44,15 +35,72 @@ class HomeFragment : Fragment() {
                     Item(),
                     Item(),
                     Item(),
-
-                    )
+                    Item(),
+                    Item(),
+                )
             ),
             Layout.TopTen(
                 listOf(
                     Item(),
                     Item(),
                     Item(),
-                    Item(), Item(), Item(),
+                    Item(), Item()
+                )
+            ),
+            Layout.TopTen(
+                listOf(
+                    Item(),
+                    Item(),
+                    Item(),
+                    Item(), Item()
+                )
+            ),
+            Layout.TopTen(
+                listOf(
+                    Item(),
+                    Item(),
+                    Item(),
+                    Item(), Item()
+                )
+            ),
+            Layout.TopTen(
+                listOf(
+                    Item(),
+                    Item(),
+                    Item(),
+                    Item(), Item()
+                )
+            ),
+            Layout.TopTen(
+                listOf(
+                    Item(),
+                    Item(),
+                    Item(),
+                    Item(), Item()
+                )
+            ),
+            Layout.TopTen(
+                listOf(
+                    Item(),
+                    Item(),
+                    Item(),
+                    Item(), Item()
+                )
+            ),
+            Layout.TopTen(
+                listOf(
+                    Item(),
+                    Item(),
+                    Item(),
+                    Item(), Item()
+                )
+            ),
+            Layout.TopTen(
+                listOf(
+                    Item(),
+                    Item(),
+                    Item(),
+                    Item(), Item()
                 )
             ),
         )

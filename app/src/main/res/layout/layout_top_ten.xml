@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:cardBackgroundColor="@android:color/holo_red_dark">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:cardBackgroundColor="@android:color/holo_green_dark">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:cardBackgroundColor="@android:color/holo_blue_dark">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:cardBackgroundColor="@android:color/holo_purple">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:cardBackgroundColor="@android:color/holo_orange_dark">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />

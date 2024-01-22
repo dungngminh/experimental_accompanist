@@ -1,18 +1,17 @@
 package me.dungngminh.seenowcarouselplayground
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
+import android.widget.ImageView
 import androidx.constraintlayout.helper.widget.Carousel
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
+import coil.load
 import me.dungngminh.seenowcarouselplayground.databinding.LayoutTopTenBinding
 
 class TestAdapter :
@@ -35,6 +34,13 @@ class TestAdapter :
 
     }) {
 
+    private var recyclerView: RecyclerView? = null
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.recyclerView = recyclerView
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TOP_TEN -> TopTenViewHolder(
@@ -50,8 +56,15 @@ class TestAdapter :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder.itemView as? MotionLayout)?.let {
+            (recyclerView as? CustomRecyclerView)?.motionLayouts?.add(
+                it
+            )
+        }
         when (holder) {
-            is TopTenViewHolder -> holder.bind((getItem(position) as Layout.TopTen).items)
+            is TopTenViewHolder -> {
+                holder.bind((getItem(position) as Layout.TopTen).items)
+            }
         }
     }
 
@@ -65,6 +78,12 @@ class TestAdapter :
         }
     }
 
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        super.onViewRecycled(holder)
+        val recyclerView = holder.itemView.parent as? CustomRecyclerView
+        (holder.itemView as? MotionLayout)?.let { recyclerView?.motionLayouts?.remove(it) }
+    }
+
 
     inner class TopTenViewHolder(private val binding: LayoutTopTenBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -74,42 +93,30 @@ class TestAdapter :
 
             binding.slider.setAdapter(object : Carousel.Adapter {
 
-                override fun count(): Int = images.size
+                override fun count(): Int = items.size
 
                 override fun populate(view: View, index: Int) {
+                    Log.d("TestAdapter", "populate: $index with ${images[index]}")
                     val imageView = (view as? ViewGroup)?.getChildAt(0)
-                    if (imageView is AppCompatImageView) {
-                        Glide.with(view)
-                            .asBitmap()
-                            .load(images[index])
-                            .into(createCustomTarget(imageView))
+                    if (imageView is ImageView) {
+                        imageView.load(images[index])
                     }
                 }
 
-                override fun onNewItem(index: Int) = Unit
+                override fun onNewItem(index: Int) {
+
+                }
             })
 
 
         }
-
-        private fun createCustomTarget(view: AppCompatImageView) =
-            object : CustomTarget<Bitmap?>() {
-                override fun onResourceReady(
-                    resource: Bitmap,
-                    transition: com.bumptech.glide.request.transition.Transition<in Bitmap?>?,
-                ) {
-                    view.setImageBitmap(resource)
-                }
-
-                override fun onLoadCleared(placeholder: Drawable?) = Unit
-            }
     }
 
     companion object {
         const val TOP_TEN = 0
         const val OTHERS = 1
 
-        val images = arrayOf(
+        val images = listOf(
             "https://images.unsplash.com/photo-1624976172336-54d765427b6b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80",
             "https://images.unsplash.com/photo-1584060622420-0673aad46076?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80",
             "https://images.unsplash.com/photo-1609703048009-d3576872b32c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80",
@@ -120,6 +127,17 @@ class TestAdapter :
             "https://images.unsplash.com/photo-1629450646456-b7a01cdec01a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80",
             "https://images.unsplash.com/photo-1573074556015-71d2140a6372?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80",
             "https://images.unsplash.com/photo-1627070160373-74a3ca062e1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+        )
+
+        var colors = intArrayOf(
+            Color.parseColor("#ffd54f"),
+            Color.parseColor("#ffca28"),
+            Color.parseColor("#ffc107"),
+            Color.parseColor("#ffb300"),
+            Color.parseColor("#ffa000"),
+            Color.parseColor("#ff8f00"),
+            Color.parseColor("#ff6f00"),
+            Color.parseColor("#c43e00")
         )
     }
 }
