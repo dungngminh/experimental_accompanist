@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.constraintlayout.helper.widget.Carousel
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import me.dungngminh.seenowcarouselplayground.databinding.LayoutSeeNowStackCardBinding
 import me.dungngminh.seenowcarouselplayground.databinding.LayoutTopTenBinding
 
 class TestAdapter :
@@ -44,7 +46,7 @@ class TestAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TOP_TEN -> TopTenViewHolder(
-                LayoutTopTenBinding.inflate(
+                LayoutSeeNowStackCardBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -85,11 +87,12 @@ class TestAdapter :
     }
 
 
-    inner class TopTenViewHolder(private val binding: LayoutTopTenBinding) :
+    inner class TopTenViewHolder(private val binding: LayoutSeeNowStackCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(items: List<Item>) {
             Log.d("TestAdapter", "getItemViewType: $items")
+
 
             binding.slider.setAdapter(object : Carousel.Adapter {
 
@@ -98,13 +101,21 @@ class TestAdapter :
                 override fun populate(view: View, index: Int) {
                     Log.d("TestAdapter", "populate: $index with ${images[index]}")
                     val imageView = (view as? ViewGroup)?.getChildAt(0)
-                    if (imageView is ImageView) {
-                        imageView.load(images[index])
+                    if (imageView is FrameLayout) {
+                        (imageView.getChildAt(0) as? ImageView)?.load(images[index])
+                    }
+                    view.setOnClickListener {
+                        if (binding.slider.currentIndex == index) {
+                            Log.d("TestAdapter", "populate: $index clicked")
+                        } else {
+                            binding.slider.transitionToIndex(index, 300)
+                        }
+
                     }
                 }
 
                 override fun onNewItem(index: Int) {
-
+                    Log.d("TestAdapter", "onNewItem: $index")
                 }
             })
 
