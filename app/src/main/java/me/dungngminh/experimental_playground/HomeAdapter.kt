@@ -1,4 +1,4 @@
-package me.dungngminh.seenowcarouselplayground
+package me.dungngminh.experimental_playground
 
 import android.graphics.Color
 import android.util.Log
@@ -13,10 +13,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import me.dungngminh.seenowcarouselplayground.databinding.LayoutSeeNowStackCardBinding
-import me.dungngminh.seenowcarouselplayground.databinding.LayoutTopTenBinding
+import me.dungngminh.experimental_playground.databinding.LayoutSeeNowStackCardBinding
 
-class TestAdapter :
+class HomeAdapter :
     ListAdapter<Layout, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<Layout>() {
         override fun areItemsTheSame(oldItem: Layout, newItem: Layout): Boolean {
             return when {

@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "me.dungngminh.seenowcarouselplayground"
+    namespace = "me.dungngminh.experimental_playground"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "me.dungngminh.seenowcarouselplayground"
+        applicationId = "me.dungngminh.experimental_playground"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

@@ -1,4 +1,4 @@
-package me.dungngminh.seenowcarouselplayground
+package me.dungngminh.experimental_playground
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

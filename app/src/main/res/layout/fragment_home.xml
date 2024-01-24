@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <me.dungngminh.seenowcarouselplayground.CustomRecyclerView
+    <me.dungngminh.experimental_playground.CustomRecyclerView
         android:id="@+id/rcv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package me.dungngminh.seenowcarouselplayground
+package me.dungngminh.experimental_playground
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import me.dungngminh.seenowcarouselplayground.databinding.FragmentHomeBinding
+import me.dungngminh.experimental_playground.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val testAdapter by lazy { TestAdapter() }
+    private val homeAdapter by lazy { HomeAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rcv.run {
-            adapter = testAdapter
+            adapter = homeAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
         val layouts = listOf(
@@ -104,7 +104,7 @@ class HomeFragment : Fragment() {
                 )
             ),
         )
-        testAdapter.submitList(layouts)
+        homeAdapter.submitList(layouts)
 
     }
 

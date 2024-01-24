@@ -1,4 +1,4 @@
-package me.dungngminh.seenowcarouselplayground
+package me.dungngminh.experimental_playground
 
 import androidx.annotation.ColorInt
 import java.util.UUID

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<me.dungngminh.seenowcarouselplayground.ClickableMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<me.dungngminh.experimental_playground.ClickableMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -119,4 +119,4 @@
         app:carousel_nextState="@+id/next"
         app:carousel_previousState="@+id/previous"
         app:constraint_referenced_ids="card1, card2, card3, card4, card5" />
-</me.dungngminh.seenowcarouselplayground.ClickableMotionLayout>
+</me.dungngminh.experimental_playground.ClickableMotionLayout>
