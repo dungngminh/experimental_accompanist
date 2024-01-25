@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.bumptech.glide.Glide
 import me.dungngminh.experimental_playground.databinding.LayoutSeeNowStackCardBinding
 
 class HomeAdapter :
@@ -101,6 +102,7 @@ class HomeAdapter :
                     Log.d("TestAdapter", "populate: $index with ${images[index]}")
                     val imageView = (view as? ViewGroup)?.getChildAt(0)
                     if (imageView is FrameLayout) {
+//                        Glide.with(imageView).load(images[index]).into(imageView.getChildAt(0) as ImageView)
                         (imageView.getChildAt(0) as? ImageView)?.load(images[index])
                     }
                     view.setOnClickListener {

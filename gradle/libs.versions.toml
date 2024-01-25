@@ -8,6 +8,7 @@ junit = "4.13.2"
 material = "1.11.0"
 kotlin = "1.9.22"
 coil = "2.5.0"
+glide = "4.16.0"
 
 
 [libraries]
@@ -19,6 +20,11 @@ junit = { module = "junit:junit", version.ref = "junit" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 [plugins]
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
+
+[bundles]
+glide = ["glide", "glide-compiler"]
