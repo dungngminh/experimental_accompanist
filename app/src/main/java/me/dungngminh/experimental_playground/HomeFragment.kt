@@ -47,62 +47,13 @@ class HomeFragment : Fragment() {
                     Item(), Item()
                 )
             ),
-            Layout.TopTen(
+            Layout.Others(
                 listOf(
                     Item(),
                     Item(),
-                    Item(),
-                    Item(), Item()
-                )
-            ),
-            Layout.TopTen(
-                listOf(
-                    Item(),
-                    Item(),
-                    Item(),
-                    Item(), Item()
-                )
-            ),
-            Layout.TopTen(
-                listOf(
-                    Item(),
-                    Item(),
-                    Item(),
-                    Item(), Item()
-                )
-            ),
-            Layout.TopTen(
-                listOf(
-                    Item(),
-                    Item(),
-                    Item(),
-                    Item(), Item()
-                )
-            ),
-            Layout.TopTen(
-                listOf(
-                    Item(),
-                    Item(),
-                    Item(),
-                    Item(), Item()
-                )
-            ),
-            Layout.TopTen(
-                listOf(
-                    Item(),
-                    Item(),
-                    Item(),
-                    Item(), Item()
-                )
-            ),
-            Layout.TopTen(
-                listOf(
-                    Item(),
-                    Item(),
-                    Item(),
-                    Item(), Item()
-                )
-            ),
+
+                ),
+            )
         )
         homeAdapter.submitList(layouts)
 

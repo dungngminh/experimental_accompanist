@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.ViewSwitcher.ViewFactory
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.helper.widget.Carousel
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.bumptech.glide.Glide
+import me.dungngminh.experimental_playground.databinding.LayoutImageSwitcherBinding
 import me.dungngminh.experimental_playground.databinding.LayoutSeeNowStackCardBinding
+
 
 class HomeAdapter :
     ListAdapter<Layout, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<Layout>() {
@@ -38,6 +41,8 @@ class HomeAdapter :
 
     private var recyclerView: RecyclerView? = null
 
+    private var currentIndex = 0
+
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         this.recyclerView = recyclerView
@@ -47,6 +52,14 @@ class HomeAdapter :
         return when (viewType) {
             TOP_TEN -> TopTenViewHolder(
                 LayoutSeeNowStackCardBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+
+            OTHERS -> OthersViewHolder(
+                LayoutImageSwitcherBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -66,6 +79,10 @@ class HomeAdapter :
         when (holder) {
             is TopTenViewHolder -> {
                 holder.bind((getItem(position) as Layout.TopTen).items)
+            }
+
+            is OthersViewHolder -> {
+                holder.bind((getItem(position) as Layout.Others).items)
             }
         }
     }
@@ -121,6 +138,37 @@ class HomeAdapter :
             })
 
 
+        }
+    }
+
+    inner class OthersViewHolder(private val binding: LayoutImageSwitcherBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(items: List<Item>) {
+            binding.imageSwitcher.setFactory {
+                val imageView = ImageView(binding.root.context)
+                imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+                val params: FrameLayout.LayoutParams = FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
+                )
+                imageView.layoutParams = params
+                imageView
+            }// Returns the view to show Image
+            // (Usually should use ImageView)
+
+            binding.imageSwitcher.run {
+                (this.nextView as? ImageView)?.load(images[currentIndex])
+                showNext()
+                currentIndex += 1
+            }
+            binding.btnNext.setOnClickListener {
+                binding.imageSwitcher.run {
+                    (this.nextView as? ImageView)?.load(images[currentIndex])
+                    showNext()
+                    currentIndex += 1
+                }
+                if (currentIndex == images.size) currentIndex = 0
+            }
         }
     }
 
