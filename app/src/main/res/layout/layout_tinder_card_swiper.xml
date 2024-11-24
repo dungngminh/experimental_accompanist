@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.dungngminh.experimental_playground.ClickableMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layoutDescription="@xml/layout_tinder_card_swiper_scene">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tinderCard4"
+        android:layout_width="0dp"
+        android:layout_height="458dp"
+        android:layout_marginStart="24dp"
+        android:alpha="0"
+        android:rotation="7"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="3:4"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tinderCard2">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tinderCard5"
+        android:layout_width="0dp"
+        android:layout_height="458dp"
+        android:layout_marginStart="24dp"
+        android:alpha="0"
+        android:rotation="-7"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="3:4"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tinderCard2">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tinderCard3"
+        android:layout_width="0dp"
+        android:layout_height="408dp"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintDimensionRatio="3:4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tinderCard2"
+        android:layout_width="0dp"
+        android:layout_height="458dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintDimensionRatio="3:4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/tinderCard1"
+        android:layout_width="match_parent"
+        android:layout_height="538dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintDimensionRatio="3:4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.constraintlayout.helper.widget.Carousel
+        android:id="@+id/tinderRightToLeftSlider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:carousel_firstView="@id/tinderCard1"
+        app:carousel_forwardTransition="@id/tinderForward"
+        app:carousel_infinite="true"
+        app:carousel_nextState="@id/tinderRightToLeft"
+        app:constraint_referenced_ids="tinderCard1, tinderCard2, tinderCard3, tinderCard4" />
+
+    <androidx.constraintlayout.helper.widget.Carousel
+        android:id="@+id/tinderLeftToRightSlider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:carousel_firstView="@id/tinderCard1"
+        app:carousel_forwardTransition="@id/tinderBackward"
+        app:carousel_infinite="true"
+        app:carousel_nextState="@id/tinderLeftToRight"
+        app:constraint_referenced_ids="tinderCard1, tinderCard2, tinderCard3, tinderCard5" />
+</me.dungngminh.experimental_playground.ClickableMotionLayout>

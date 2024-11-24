@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
         val layouts = listOf(
-            Layout.TopTen(
+            Layout.TinderCardSwiper(
                 listOf(
                     Item(),
                     Item(),
@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
                     Item(),
                 )
             ),
-            Layout.TopTen(
+            Layout.TinderCardSwiper(
                 listOf(
                     Item(),
                     Item(),

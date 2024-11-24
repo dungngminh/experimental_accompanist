@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.ViewSwitcher.ViewFactory
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.helper.widget.Carousel
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.DiffUtil
@@ -16,14 +14,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import me.dungngminh.experimental_playground.databinding.LayoutImageSwitcherBinding
-import me.dungngminh.experimental_playground.databinding.LayoutSeeNowStackCardBinding
+import me.dungngminh.experimental_playground.databinding.LayoutTinderCardSwiperBinding
 
 
 class HomeAdapter :
     ListAdapter<Layout, RecyclerView.ViewHolder>(object : DiffUtil.ItemCallback<Layout>() {
         override fun areItemsTheSame(oldItem: Layout, newItem: Layout): Boolean {
             return when {
-                oldItem is Layout.TopTen && newItem is Layout.TopTen -> oldItem.items == newItem.items
+                oldItem is Layout.TinderCardSwiper && newItem is Layout.TinderCardSwiper -> oldItem.items == newItem.items
                 oldItem is Layout.Others && newItem is Layout.Others -> oldItem.items == newItem.items
                 else -> false
             }
@@ -31,7 +29,7 @@ class HomeAdapter :
 
         override fun areContentsTheSame(oldItem: Layout, newItem: Layout): Boolean {
             return when {
-                oldItem is Layout.TopTen && newItem is Layout.TopTen -> oldItem == newItem
+                oldItem is Layout.TinderCardSwiper && newItem is Layout.TinderCardSwiper -> oldItem == newItem
                 oldItem is Layout.Others && newItem is Layout.Others -> oldItem == newItem
                 else -> false
             }
@@ -51,7 +49,7 @@ class HomeAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TOP_TEN -> TopTenViewHolder(
-                LayoutSeeNowStackCardBinding.inflate(
+                LayoutTinderCardSwiperBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -78,7 +76,7 @@ class HomeAdapter :
         }
         when (holder) {
             is TopTenViewHolder -> {
-                holder.bind((getItem(position) as Layout.TopTen).items)
+                holder.bind((getItem(position) as Layout.TinderCardSwiper).items)
             }
 
             is OthersViewHolder -> {
@@ -89,7 +87,7 @@ class HomeAdapter :
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)) {
-            is Layout.TopTen -> TOP_TEN
+            is Layout.TinderCardSwiper -> TOP_TEN
             is Layout.Others -> OTHERS
             else -> {
                 throw IllegalArgumentException("Unknown view type")
@@ -104,14 +102,14 @@ class HomeAdapter :
     }
 
 
-    inner class TopTenViewHolder(private val binding: LayoutSeeNowStackCardBinding) :
+    inner class TopTenViewHolder(private val binding: LayoutTinderCardSwiperBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(items: List<Item>) {
             Log.d("TestAdapter", "getItemViewType: $items")
 
 
-            binding.slider.setAdapter(object : Carousel.Adapter {
+            binding.tinderRightToLeftSlider.setAdapter(object : Carousel.Adapter {
 
                 override fun count(): Int = items.size
 
@@ -119,14 +117,13 @@ class HomeAdapter :
                     Log.d("TestAdapter", "populate: $index with ${images[index]}")
                     val imageView = (view as? ViewGroup)?.getChildAt(0)
                     if (imageView is FrameLayout) {
-//                        Glide.with(imageView).load(images[index]).into(imageView.getChildAt(0) as ImageView)
                         (imageView.getChildAt(0) as? ImageView)?.load(images[index])
                     }
                     view.setOnClickListener {
-                        if (binding.slider.currentIndex == index) {
+                        if (binding.tinderRightToLeftSlider.currentIndex == index) {
                             Log.d("TestAdapter", "populate: $index clicked")
                         } else {
-                            binding.slider.transitionToIndex(index, 300)
+                            binding.tinderRightToLeftSlider.transitionToIndex(index, 300)
                         }
 
                     }

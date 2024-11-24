@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "me.dungngminh.experimental_playground"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "me.dungngminh.experimental_playground"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -50,6 +50,4 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.coil)
-
-    implementation(libs.glide)
 }
